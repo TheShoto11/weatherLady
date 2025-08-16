@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+        <!--        lidhja me db dhe mysql mund te ndr sipas DB se tjerat jan isoj-->
+        <property name="hibernate.connection.driver.class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc.mysql://localhost:3306/weatherLady?useSSL=false&amp;serverTimezone=UTC</property>
+        <!--        ssl (secure sockets layer) perdored per te thene qe lidhja me db nuk duhet te shmang gabimet qe mund te ndodhin nese nje lidhje ssl nuk esht conf -->
+        <!--        Server timezone percakton zonen e kohes per serverin e db utc=universal time cordinated-->
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">arlindi123</property>
+        <!--        dialekti i hibernate-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <!--        Shfaqja e msg nga hibernate -->
+        <property name="hibernate.show_sql">true</property>
+        <!--        perditsimi i skemes se db-->
+        <property name="hibernate.hbm2ddl.out">update</property>
+        <!--        mapping u klasave-->
+        <mapping class=""/>
+
+    </session-factory>
+</hibernate-configuration>
