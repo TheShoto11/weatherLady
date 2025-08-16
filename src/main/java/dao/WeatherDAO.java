@@ -3,7 +3,10 @@ package dao;
 import entity.WeatherData;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import util.hibernateUtil;
+
+import java.util.List;
 
 
 //klasa dao sherben per percaktimin e te dhenave qe duam te dergojm
@@ -23,5 +26,19 @@ public class WeatherDAO {
                                     //krijon rresht te ri ne db/tabel
         transaction.commit();//siguron qe ndryshimet jan ruajtur ne db
     }
+public List<WeatherData>getWeatherDataByLocation(String city,String country){
+    Session session = hibernateUtil.getSession();
+    Transaction transaction= session.beginTransaction();
+    //query per te marr te dhenat e motit per qytetin dhe vendin
+    //qe kemi vendos. Kjo metode ekzekuton nje HQL (Hibernate Query Language)
+    String hql= "FROM WeatherData wd where wd.location.city = :city AND wd.location.country";
 
+    //krijojm query tbazuar ne hql dhe ekz ne entity WeatherData
+    Query<WeatherData> query =session.createQuery(hql,WeatherData.class);
+    query.setParameter("city",city);
+    query.setParameter("country",country);
+    List<WeatherData>weatherDataList=query.list();
+    transaction.commit();
+    return weatherDataList;
+}
 }
